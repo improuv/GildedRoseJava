@@ -15,9 +15,12 @@ public class ABackstagePass {
 
 	@Test
 	public void with11DaysShouldIncreaseQualityByOne() {
+		// Arrange
 		Item backstagePass = new Item("Backstage passes to a TAFKAL80ETC concert", 11, 30);
 		GildedRose store = GildedRose.with(backstagePass);
+		// Act
 		store.updateQuality();
+		// Assert
 		assertThat(backstagePass.quality, is(31));
 	}
 

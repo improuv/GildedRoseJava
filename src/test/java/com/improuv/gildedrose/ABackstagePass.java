@@ -5,6 +5,7 @@ import static org.hamcrest.Matchers.greaterThan;
 import static org.hamcrest.Matchers.lessThan;
 import static org.junit.Assert.assertThat;
 
+import org.junit.Ignore;
 import org.junit.Test;
 
 import com.improuv.gildedrose.GildedRose;
@@ -65,10 +66,10 @@ public class ABackstagePass {
 	}
 
 	@Test
-	public void qualityCannotExceedMinimumQuality() {
-		Item backstagePass = new Item("Backstage passes to a TAFKAL80ETC concert", 5, -50);
+	public void qualityCannotExceedMaximumQualityWhen49() {
+		Item backstagePass = new Item("Backstage passes to a TAFKAL80ETC concert", 5, 49);
 		GildedRose store = GildedRose.with(backstagePass);
 		store.updateQuality();
-		assertThat(backstagePass.quality, is(lessThan(0)));
+		assertThat(backstagePass.quality, is(not(greaterThan(50))));
 	}
 }

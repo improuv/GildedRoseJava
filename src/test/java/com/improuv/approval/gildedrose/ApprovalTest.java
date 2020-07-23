@@ -1,11 +1,10 @@
 package com.improuv.approval.gildedrose;
 
-import com.improuv.gildedrose.GildedRose;
-import com.improuv.gildedrose.Item;
 import org.approvaltests.Approvals;
 import org.junit.Test;
 
-import java.util.Arrays;
+import com.improuv.gildedrose.GildedRose;
+import com.improuv.gildedrose.Item;
 
 public class ApprovalTest {
 

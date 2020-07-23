@@ -23,27 +23,27 @@ public class AnAgedBrie {
     public void shouldIncreaseInQualityWhileAging() {
         setTestData(5, OLD_QUALITY);
         GildedRose.with(agedBrie).updateQuality();
-        assertThat(agedBrie.quality, is(OLD_QUALITY + 1));
+        assertThat(agedBrie.getQuality(), is(OLD_QUALITY + 1));
     }
 
     @Test
     public void shouldDoubleItsQualityIncreaseWhenOverdue() {
         setTestData(0, OLD_QUALITY);
         GildedRose.with(agedBrie).updateQuality();
-        assertThat(agedBrie.quality, is(OLD_QUALITY + 2));
+        assertThat(agedBrie.getQuality(), is(OLD_QUALITY + 2));
     }
 
     @Test
     public void qualityCannotExceedMaximumQuality() {
         setTestData(5, MAX_QUALITY);
         GildedRose.with(agedBrie).updateQuality();
-        assertThat(agedBrie.quality, is(not(greaterThan(MAX_QUALITY))));
+        assertThat(agedBrie.getQuality(), is(not(greaterThan(MAX_QUALITY))));
     }
 
     @Test
     public void qualityCannotExceedMaximumQualityWhenOverdue() {
         setTestData(0, MAX_QUALITY);
         GildedRose.with(agedBrie).updateQuality();
-        assertThat(agedBrie.quality, is(not(greaterThan(MAX_QUALITY))));
+        assertThat(agedBrie.getQuality(), is(not(greaterThan(MAX_QUALITY))));
     }
 }

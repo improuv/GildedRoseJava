@@ -34,28 +34,28 @@ public class AGildedRoseItem {
     public void atEndOfTheDayItemQualityShouldBeDecreasedByTwoWhenSellInDateHasPassed() {
         setTestData(0, 10);
         GildedRose.with(item).updateQuality();
-        assertThat(item.quality, is(8));
+        assertThat(item.getQuality(), is(8));
     }
 
     @Test
     public void qualityCanNeverBeDecreasedBelowMinimumQuality() {
         setTestData(1000, MIN_QUALITY);
         GildedRose.with(item).updateQuality();
-        assertThat(item.quality, is(greaterThanOrEqualTo(MIN_QUALITY)));
+        assertThat(item.getQuality(), is(greaterThanOrEqualTo(MIN_QUALITY)));
     }
 
     @Test
     public void qualityCannotExceedMaximumQuality() {
         setTestData(14, MAX_QUALITY);
         GildedRose.with(item).updateQuality();
-        assertThat(item.quality, is(not(greaterThan(MAX_QUALITY))));
+        assertThat(item.getQuality(), is(not(greaterThan(MAX_QUALITY))));
     }
 
     @Test
     public void qualityCannotExceedZeroWithNegativeSellIn() {
         setTestData(0, MIN_QUALITY);
         GildedRose.with(item).updateQuality();
-        assertThat(item.quality, is(not(lessThan(MIN_QUALITY))));
+        assertThat(item.getQuality(), is(not(lessThan(MIN_QUALITY))));
     }
 
 

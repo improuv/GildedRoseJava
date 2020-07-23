@@ -18,21 +18,21 @@ public class TheHandOfRagnaros {
     public void shouldNotDecreaseInQuality() {
         setTestData(5);
         GildedRose.with(sulfura).updateQuality();
-        assertThat(sulfura.quality, is(greaterThanOrEqualTo(80)));
+        assertThat(sulfura.getQuality(), is(greaterThanOrEqualTo(80)));
     }
 
     @Test
     public void shouldNotDecreaseInQualityWithNegativeSellIn() {
         setTestData(-1);
         GildedRose.with(sulfura).updateQuality();
-        assertThat(sulfura.quality, is(greaterThanOrEqualTo(80)));
+        assertThat(sulfura.getQuality(), is(greaterThanOrEqualTo(80)));
     }
 
     @Test
     public void shouldNotGetOlder() {
         setTestData(10);
         GildedRose.with(sulfura).updateQuality();
-        assertThat(sulfura.sellIn, is(10));
+        assertThat(sulfura.getSellIn(), is(10));
     }
 
 }

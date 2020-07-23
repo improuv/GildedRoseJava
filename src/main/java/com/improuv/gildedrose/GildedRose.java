@@ -4,14 +4,14 @@ import java.util.List;
 
 public class GildedRose {
 
-    public static GildedRose with(Item ... items) {
-        GildedRose app = new GildedRose();
-        app.items = Arrays.asList(items);
-        return app;
+	final List<Item> items;
+    private GildedRose(List<Item> items) {
+    	this.items = items;
     }
-
-    List<Item> items = null;
-
+    public static GildedRose with(Item ... items) {
+        return new GildedRose(Arrays.asList(items));
+    }
+    
     public void updateQuality() {
         for (int i = 0; i < items.size(); i++) {
             if ((!"Aged Brie".equals(items.get(i).getName())) && !"Backstage passes to a TAFKAL80ETC concert".equals(items.get(i).getName())) {
@@ -63,5 +63,7 @@ public class GildedRose {
             }
         }
     }
+
+
 
 }

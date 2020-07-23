@@ -1,21 +1,23 @@
 package com.improuv.gildedrose;
 
+/**
+ * DO NOT TOUCH --
+ * However, do not alter the Item class or Items property as those belong to the goblin in the 
+ * corner who will insta-rage and one-shot you as he doesn't believe in shared code ownership
+ */
 public class Item {
-    public String name;
-    public int sellIn;
-    public int quality; 
+    private final String name;
+    private int sellIn;
+    private int quality; 
     
     public Item(String name, int sellIn, int quality) {
-        this.setName(name);
+        this.name = name;
         this.setSellIn(sellIn);
         this.setQuality(quality);
     }
     
     public String getName() {
         return name;
-    }
-    public void setName(String name) {
-        this.name = name;
     }
     public int getSellIn() {
         return sellIn;

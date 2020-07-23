@@ -5,10 +5,12 @@
       <root url="jar://$PROJECT_DIR$/libs/hamcrest-library-1.3.jar!/" />
       <root url="jar://$PROJECT_DIR$/libs/junit-4.12.jar!/" />
       <root url="jar://$PROJECT_DIR$/libs/mockito-all-1.10.19.jar!/" />
+      <root url="jar://$PROJECT_DIR$/libs/approvaltests-9.1.0.jar!/" />
     </CLASSES>
     <JAVADOC />
     <SOURCES>
       <root url="jar://$PROJECT_DIR$/libs/mockito-all-1.10.19.jar!/" />
+      <root url="jar://$PROJECT_DIR$/libs/approvaltests-9.1.0.jar!/" />
     </SOURCES>
   </library>
 </component>

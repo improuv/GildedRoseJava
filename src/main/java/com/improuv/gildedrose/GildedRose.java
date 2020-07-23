@@ -4,7 +4,7 @@ import java.util.List;
 
 public class GildedRose {
 
-    static GildedRose with(Item ... items) {
+    public static GildedRose with(Item ... items) {
         GildedRose app = new GildedRose();
         app.items = Arrays.asList(items);
         return app;

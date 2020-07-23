@@ -9,5 +9,6 @@
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
     <orderEntry type="library" scope="TEST" name="libs" level="project" />
+    <orderEntry type="library" name="approvaltests-util-9.1.0" level="project" />
   </component>
 </module>

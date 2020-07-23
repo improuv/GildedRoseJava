@@ -4,46 +4,46 @@ import static org.hamcrest.CoreMatchers.not;
 import static org.hamcrest.Matchers.greaterThan;
 import static org.junit.Assert.assertThat;
 
-import org.junit.Before;
 import org.junit.Test;
-
-import com.improuv.gildedrose.GildedRose;
-import com.improuv.gildedrose.Item;
 
 
 public class AnAgedBrie {
 
-	Item daGschdingadeKaas;
-	int oldQuality = 15;
+    private static final String AGED_BRIE_NAME = "Aged Brie";
+    private static final int OLD_QUALITY = 15;
+    private static final int MAX_QUALITY = 50;
+    private final Item agedBrie = new Item(AGED_BRIE_NAME, 5, OLD_QUALITY);
 
-	@Before
-	public void setUp() {
-		daGschdingadeKaas = new Item("Aged Brie", 0, oldQuality);
-	}
+    private void setTestData(int sellin, int quality) {
+        agedBrie.setSellIn(sellin);
+        agedBrie.setQuality(quality);
+    }
 
-	@Test
-	public void shouldIncreaseInQualityWhileAging() {
-		daGschdingadeKaas.sellIn = 15;
-		GildedRose store = GildedRose.with(daGschdingadeKaas);
-		store.updateQuality();
+    @Test
+    public void shouldIncreaseInQualityWhileAging() {
+        setTestData(5, OLD_QUALITY);
+        GildedRose.with(agedBrie).updateQuality();
+        assertThat(agedBrie.quality, is(OLD_QUALITY + 1));
+    }
 
-		assertThat(daGschdingadeKaas.quality, is(oldQuality + 1));
-	}
+    @Test
+    public void shouldDoubleItsQualityIncreaseWhenOverdue() {
+        setTestData(0, OLD_QUALITY);
+        GildedRose.with(agedBrie).updateQuality();
+        assertThat(agedBrie.quality, is(OLD_QUALITY + 2));
+    }
 
-	@Test
-	public void shouldDoubleItsQualityIncreaseWhenOverdue() {
-		daGschdingadeKaas.sellIn = -5;
-		GildedRose store = GildedRose.with(daGschdingadeKaas);
-		store.updateQuality();
+    @Test
+    public void qualityCannotExceedMaximumQuality() {
+        setTestData(5, MAX_QUALITY);
+        GildedRose.with(agedBrie).updateQuality();
+        assertThat(agedBrie.quality, is(not(greaterThan(MAX_QUALITY))));
+    }
 
-		assertThat(daGschdingadeKaas.quality, is(oldQuality + 2));
-	}
-
-	@Test
-	public void qualityCannotExceedMaximumQuality() {
-		daGschdingadeKaas.quality = 50;
-		GildedRose store = GildedRose.with(daGschdingadeKaas);
-		store.updateQuality();
-		assertThat(daGschdingadeKaas.quality, is(not(greaterThan(50))));
-	}
+    @Test
+    public void qualityCannotExceedMaximumQualityWhenOverdue() {
+        setTestData(0, MAX_QUALITY);
+        GildedRose.with(agedBrie).updateQuality();
+        assertThat(agedBrie.quality, is(not(greaterThan(MAX_QUALITY))));
+    }
 }

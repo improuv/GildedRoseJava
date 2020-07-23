@@ -1,27 +1,32 @@
 package com.improuv.gildedrose;
+import java.io.PrintStream;
 import java.util.ArrayList;
+import java.util.List;
 
 public class Main {
 
-	/**
-	 * @param args
-	 */
-	public static void main(String[] args) {
+    public static void main(String[] args) {
 
-		System.out.println("OMGHAI!");
+        System.out.println("OMGHAI!");
 
-		GildedRose app = new GildedRose();
+        GildedRose app = new GildedRose();
 
-		app.items = new ArrayList<Item>();
-		app.items.add(new Item("+5 Dexterity Vest", 10, 20));
-		app.items.add(new Item("Aged Brie", 2, 0));
-		app.items.add(new Item("Elixir of the Mongoose", 5, 7));
-		app.items.add(new Item("Sulfuras, Hand of Ragnaros", 0, 80));
-		app.items.add(new Item("Backstage passes to a TAFKAL80ETC concert", 15,
-				20));
-		app.items.add(new Item("Conjured Mana Cake", 3, 6));
+        app.items = new ArrayList<>();
+        app.items.add(new Item("+5 Dexterity Vest", 10, 20));
+        app.items.add(new Item("Aged Brie", 2, 0));
+        app.items.add(new Item("Elixir of the Mongoose", 5, 7));
+        app.items.add(new Item("Sulfuras, Hand of Ragnaros", 0, 80));
+        app.items.add(new Item("Backstage passes to a TAFKAL80ETC concert", 15,
+                20));
+        app.items.add(new Item("Conjured Mana Cake", 3, 6));
+        dump(System.out, app.items);
+        app.updateQuality();
+        dump(System.out, app.items);
+    }
 
-		app.updateQuality();
-	}
-
+    public static void dump(PrintStream out,List<Item> items) {
+		out.println("Items");
+        items.forEach(i -> out.println(i.toString()));
+        out.println();
+    }
 }

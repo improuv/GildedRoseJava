@@ -5,27 +5,34 @@ import static org.junit.Assert.assertThat;
 
 import org.junit.Test;
 
-import com.improuv.gildedrose.GildedRose;
-import com.improuv.gildedrose.Item;
-
-
 
 public class TheHandOfRagnaros {
 
-	@Test
-	public void shouldNotDecreaseInQuality() throws Exception {
-		Item sulfura = new Item("Sulfuras, Hand of Ragnaros", 0, 80);
-		GildedRose store = GildedRose.with(sulfura);
-		store.updateQuality();
-		assertThat(sulfura.quality, is(greaterThanOrEqualTo(80)));
-	}
+    public static final String SULFURAS_NAME = "Sulfuras, Hand of Ragnaros";
+    final Item sulfura = new Item(SULFURAS_NAME, 5, 80);
 
-	@Test
-	public void shouldNotGetOlder() throws Exception {
-		Item sulfura = new Item("Sulfuras, Hand of Ragnaros", 10, 80);
-		GildedRose store = GildedRose.with(sulfura);
-		store.updateQuality();
-		assertThat(sulfura.sellIn, is(10));
-	}
+    private void setTestData(int sellin) {
+        sulfura.setSellIn(sellin);
+    }
+    @Test
+    public void shouldNotDecreaseInQuality() {
+        setTestData(5);
+        GildedRose.with(sulfura).updateQuality();
+        assertThat(sulfura.quality, is(greaterThanOrEqualTo(80)));
+    }
+
+    @Test
+    public void shouldNotDecreaseInQualityWithNegativeSellIn() {
+        setTestData(-1);
+        GildedRose.with(sulfura).updateQuality();
+        assertThat(sulfura.quality, is(greaterThanOrEqualTo(80)));
+    }
+
+    @Test
+    public void shouldNotGetOlder() {
+        setTestData(10);
+        GildedRose.with(sulfura).updateQuality();
+        assertThat(sulfura.sellIn, is(10));
+    }
 
 }

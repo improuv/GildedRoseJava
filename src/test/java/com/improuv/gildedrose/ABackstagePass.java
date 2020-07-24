@@ -6,11 +6,8 @@ import static org.junit.Assert.assertThat;
 
 import org.junit.Test;
 
-
 public class ABackstagePass {
-    private static final int MIN_QUALITY = 0;
-    private static final String BACKSTAGE_PASS_NAME = "Backstage passes to a TAFKAL80ETC concert";
-    private final Item backstagePass = new Item(BACKSTAGE_PASS_NAME, 0, 0);
+    private final Item backstagePass = new Item(TestConstants.BACKSTAGE_PASS_NAME, 0, 0);
 
     private void setTestData(int sellin, int quality) {
         backstagePass.setSellIn(sellin);
@@ -48,7 +45,7 @@ public class ABackstagePass {
     public void shouldHaveZeroQualityWhenTheConcertIsOver() {
         setTestData(0, 30);
         GildedRose.with(backstagePass).updateQuality();
-        assertThat(backstagePass.getQuality(), is(MIN_QUALITY));
+        assertThat(backstagePass.getQuality(), is(TestConstants.MIN_QUALITY));
     }
 
     @Test

@@ -8,8 +8,7 @@ import org.junit.Test;
 
 public class TheHandOfRagnaros {
 
-    public static final String SULFURAS_NAME = "Sulfuras, Hand of Ragnaros";
-    final Item sulfura = new Item(SULFURAS_NAME, 5, 80);
+    final Item sulfura = new Item(TestConstants.SULFURAS_NAME, 5, 80);
 
     private void setTestData(int sellin) {
         sulfura.setSellIn(sellin);

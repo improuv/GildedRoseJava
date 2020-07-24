@@ -7,8 +7,6 @@ import static org.junit.Assert.assertThat;
 import org.junit.Test;
 
 public class AGildedRoseItem {
-    private static final int MIN_QUALITY = 0;
-    private static final int MAX_QUALITY = 50;
     private final Item item = new Item("Item", 0, 0);
 
     private void setTestData(int sellin, int quality) {
@@ -39,23 +37,23 @@ public class AGildedRoseItem {
 
     @Test
     public void qualityCanNeverBeDecreasedBelowMinimumQuality() {
-        setTestData(1000, MIN_QUALITY);
+        setTestData(1000, TestConstants.MIN_QUALITY);
         GildedRose.with(item).updateQuality();
-        assertThat(item.getQuality(), is(greaterThanOrEqualTo(MIN_QUALITY)));
+        assertThat(item.getQuality(), is(greaterThanOrEqualTo(TestConstants.MIN_QUALITY)));
     }
 
     @Test
     public void qualityCannotExceedMaximumQuality() {
-        setTestData(14, MAX_QUALITY);
+        setTestData(14, TestConstants.MAX_QUALITY);
         GildedRose.with(item).updateQuality();
-        assertThat(item.getQuality(), is(not(greaterThan(MAX_QUALITY))));
+        assertThat(item.getQuality(), is(not(greaterThan(TestConstants.MAX_QUALITY))));
     }
 
     @Test
     public void qualityCannotExceedZeroWithNegativeSellIn() {
-        setTestData(0, MIN_QUALITY);
+        setTestData(0, TestConstants.MIN_QUALITY);
         GildedRose.with(item).updateQuality();
-        assertThat(item.getQuality(), is(not(lessThan(MIN_QUALITY))));
+        assertThat(item.getQuality(), is(not(lessThan(TestConstants.MIN_QUALITY))));
     }
 
 

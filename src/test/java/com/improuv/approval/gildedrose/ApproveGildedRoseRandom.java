@@ -1,13 +1,13 @@
 package com.improuv.approval.gildedrose;
 
-import static org.junit.Assert.*;
-
 import java.util.Random;
 import java.util.stream.Collectors;
-import java.util.stream.IntStream;
+import java.util.stream.Stream;
 
+import static com.improuv.gildedrose.TestConstants.*;
 import org.approvaltests.Approvals;
 import org.junit.Before;
+import org.junit.Ignore;
 import org.junit.Test;
 
 import com.improuv.gildedrose.GildedRose;
@@ -16,26 +16,28 @@ import com.improuv.gildedrose.Item;
 public class ApproveGildedRoseRandom {
 
     private static final int NUMBER_OF_INPUTS = 20000;
-    private static final int MIN_SELLIN = -5;
-    private static final int MAX_SELLIN = 20;
-    private static final int MIN_QUALITY = 0;
-    private static final int MAX_QUALITY = 80;
+    private static final int MIN_SELLIN_VALUE = -5;
+    private static final int MAX_SELLIN_VALUE = 20;
+    private static final int MIN_QUALITY_VALUE = MIN_QUALITY;
+    private static final int MAX_QUALITY_VALUE = 80;
+    private static final String[] names = {
+            AGED_BRIE_NAME,
+            BACKSTAGE_PASS_NAME,
+            SULFURAS_NAME,
+            DEXTERITY_VEST_NAME,
+            CONJURED_MANA_CAKE_NAME,
+            ELIXIR_MONGOOSE_NAME
+            };
+    public static final int SEED = 202020;
+
     private Random random;
-	private String[] names = {
-			"Aged Brie",
-			"Backstage passes to a TAFKAL80ETC concert",
-			"Sulfuras, Hand of Ragnaros", 
-			"+5 Dexterity Vest",
-			"Conjured Mana Cake",
-			"Elixir of the Mongoose"
-			};
 
     @Before
-    public void initialize() {
-        random = new Random(202020);
+    public void setup() {
+        random = new Random(SEED);
     }
 
-    // @Test
+    @Test @Ignore
     public void approve() {
         Item[] items = generateItems();
         GildedRose.with(items).updateQuality();
@@ -43,18 +45,20 @@ public class ApproveGildedRoseRandom {
     }
 
     private Item[] generateItems() {
-    	return IntStream.range(0,NUMBER_OF_INPUTS)
-    			.mapToObj(i -> new Item(nextName(), nextSellIn(), nextItemQuality()))
-    			.collect(Collectors.toList())
-    			.toArray(new Item[0]);
+        return Stream.generate(this::createItem)
+                .limit(NUMBER_OF_INPUTS).toArray(Item[]::new);
+    }
+
+    private Item createItem() {
+        return new Item(nextName(), nextSellIn(), nextItemQuality());
     }
 
     private int nextItemQuality() {
-        return MIN_QUALITY + random.nextInt(MAX_QUALITY - MIN_QUALITY);
+        return MIN_QUALITY_VALUE + random.nextInt(MAX_QUALITY_VALUE - MIN_QUALITY_VALUE);
     }
 
     private int nextSellIn() {
-        return MIN_SELLIN + random.nextInt(MAX_SELLIN - MIN_SELLIN);
+        return MIN_SELLIN_VALUE + random.nextInt(MAX_SELLIN_VALUE - MIN_SELLIN_VALUE);
     }
 
     private String nextName() {

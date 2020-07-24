@@ -6,7 +6,7 @@ import org.junit.Test;
 import com.improuv.gildedrose.GildedRose;
 import com.improuv.gildedrose.Item;
 
-public class ApprovalTest {
+public class ApproveGuildedRose {
 
     private static final String BACKSTAGE_PASS_NAME = "Backstage passes to a TAFKAL80ETC concert";
     private static final String AGED_BRIE_NAME = "Aged Brie";
@@ -15,8 +15,8 @@ public class ApprovalTest {
     private static final int MIN_QUALITY = 0;
     private static final int MAX_QUALITY = 50;
 
-    @Test
-    public void approveGildedRose()
+    //@Test 
+    public void approve()
     {
         final Item[] items = new Item[] {
                 new Item("Item", 100, 1),
